@@ -5,22 +5,18 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from api import *
+import json
+import watson
+from watson_developer_cloud import ConversationV1
 
 template_dir = os.path.dirname(os.path.abspath(__file__))
 app = Flask(__name__,
             template_folder=template_dir,
             static_url_path='',
             static_folder=template_dir)
-import json
-from watson_developer_cloud import ConversationV1
 
-CONVERSATION = ConversationV1(
-        username='7859a24d-768c-46f3-bf57-d13a8a61b975',
-        password='3X4GfI4qnbOB',
-        version='2017-10-01')
-WORKSPACE_ID = '27511189-bce7-48ad-85b9-ff79b5d9d4ff'
+watsonBot = watson.Watson()
 
-    
 @app.route("/")
 def index():
     print 'INDEX'
@@ -112,23 +108,12 @@ def aftership_Create_Shipment():
     ShipmentInfo = a.createShipment(slug,number,title)
     return render_template("index.html", ShipmentInfo=ShipmentInfo)
 
-
-def speak(message, context):
-    result = CONVERSATION.message(workspace_id=WORKSPACE_ID, message_input={'text': message}, context=context)
-    return result['output']['text'][0], result['context']
-
-
 @app.route("/watson", methods=['POST'])
 def conversation():
     form_data = request.form
-    message = form_data.get('answer', '')
-    try:
-        context = json.loads(form_data.get('context', "{}"))
-    except ValueError:
-        # No context yet, we create it empty
-        context = {}
-    response, context = speak(message, context)
-    return render_template("watson.html", response=response, context=json.dumps(context))
+    message = form_data.get('question', '')
+    response = watsonBot.askWatson(message)
+    return render_template("watson.html", question=message, response=watsonBot.getAnswer(response))
 
 
 #app.run(host=os.getenv('IP', '0.0.0.0'),port=int(os.getenv('PORT', 8080)))
