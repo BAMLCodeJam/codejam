@@ -1,7 +1,6 @@
-.idea/
-.DS_Store
-api.pyc
-constants.pyc
+.idea/              # Ignore IntelliJ project files
+.DS_Store           # Windows system dir
+**/*.pyc            # we don't want compiled python.
 COMMIT_EDITMSG.swp
-node_modules
-bower_components
+node_modules        # Ignore Node stuff
+bower_components    # Ignore Bower stuff
