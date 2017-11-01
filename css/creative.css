@@ -207,8 +207,8 @@ header.masthead {
 .portfolio-box {
   position: relative;
   display: block;
-  max-width: 650px;
-  margin: 0 auto; }
+  max-width: 400px;
+  margin: 15px; }
   .portfolio-box .portfolio-box-caption {
     position: absolute;
     bottom: 0;
@@ -242,6 +242,11 @@ header.masthead {
     opacity: 1; }
   .portfolio-box:focus {
     outline: none; }
+
+.watson_img {
+    height: 220;
+    width: 220;
+}
 
 .call-to-action {
   padding: 50px 0; }
