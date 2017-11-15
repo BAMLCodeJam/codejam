@@ -4,6 +4,8 @@ import constants
 from watson_developer_cloud import ConversationV1
 import pprint
 
+#API: https://www.ibm.com/watson/developercloud/conversation/api/v1/
+
 class Watson(object):
 
     def __init__(self):
@@ -28,7 +30,12 @@ class Watson(object):
         self.context = response['context']
 
     def askWatson(self, text):
-        response = self.conversation.message(workspace_id=constants.WATSON['workspaceID'], message_input={'text': text}, context=self.context)
+        response = self.conversation.message(workspace_id=constants.WATSON['workspaceID'], input={'text': text}, context=self.context)
+        self.setContext(response)
+        return response
+        
+    def askWatsonNoContext(self, text):
+        response = self.conversation.message(workspace_id=constants.WATSON['workspaceID'], input={'text': text})
         self.setContext(response)
         return response
 

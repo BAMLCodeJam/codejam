@@ -9,6 +9,9 @@ import json
 import watson
 from watson_developer_cloud import ConversationV1
 
+import urllib3
+urllib3.disable_warnings()
+
 template_dir = os.path.dirname(os.path.abspath(__file__))
 app = Flask(__name__,
             template_folder=template_dir,
@@ -114,7 +117,14 @@ def conversation():
     message = form_data.get('question', '')
     response = watsonBot.askWatson(message)
     return render_template("watson.html", question=message, response=watsonBot.getAnswer(response))
-
+    
+@app.route("/watson_new", methods=['POST'])
+def conversationNew():
+    form_data = request.form
+    message = form_data.get('question', '')
+    response = watsonBot.askWatsonNoContext(message)
+    return render_template("watson.html", question=message, response=watsonBot.getAnswer(response))
+        
 
 #app.run(host=os.getenv('IP', '0.0.0.0'),port=int(os.getenv('PORT', 8080)))
 if __name__ == "__main__":

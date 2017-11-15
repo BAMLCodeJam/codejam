@@ -13,8 +13,8 @@ AFTERSHIP_API_KEY = "26f7101e-5973-47d7-9fba-27d23048c76b"
 
 
 WATSON = {
-            "username": "7859a24d-768c-46f3-bf57-d13a8a61b975",
-            "password": "3X4GfI4qnbOB" ,
-            "workspaceID": "27511189-bce7-48ad-85b9-ff79b5d9d4ff",
+            "username": "3f757e15-4715-4fce-a802-379d8ff61e7e",
+            "password": "G6aM5Q8ShUGn" ,
+            "workspaceID": "a13b5afe-2e40-456c-af4b-3aa9dbb33da0",
             "version": "2017-10-01"
         }
