@@ -10,7 +10,18 @@ class WatsonImgRec(object):
             url=WATSON_VISUAL_REC['url'],
             version=WATSON_VISUAL_REC['version'],
             api_key=WATSON_VISUAL_REC['api_key'], )
-
+    
+    @staticmethod
+    def imagesSet():
+        return [
+            {'image_id': 0, 'path': 'https://s-i.huffpost.com/gen/4451422/images/o-FOOD-facebook.jpg'},
+            {'image_id': 1, 'path': 'http://cdn.akc.org/content/hero/puppy-boundaries_header.jpg'},
+            {'image_id': 2, 'path': 'https://image.freepik.com/free-vector/writting-pencil-design_1095-187.jpg'},
+            ]
+    
+    @staticmethod
+    def task():
+        return 'Food'
 
     def classifyImg(self, request, images, image_id):
 

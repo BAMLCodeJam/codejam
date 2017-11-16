@@ -24,7 +24,7 @@ watsonBot = watson.Watson()
 @app.route("/")
 def index():
     print 'INDEX'
-    return render_template("index.html")
+    return render_template("index.html", images=watsonImgRec.WatsonImgRec.imagesSet(), task=watsonImgRec.WatsonImgRec.task())
 
 @app.route("/<name>")
 def hello(name):
@@ -130,18 +130,11 @@ def conversationNew():
 @app.route("/watsonImgRec", methods=['GET'])
 def imgRec():
     classifier = watsonImgRec.WatsonImgRec()
-
     responseImg = None
-    
-    images = [
-        {'image_id': 0, 'path': 'https://s-i.huffpost.com/gen/4451422/images/o-FOOD-facebook.jpg'},
-        {'image_id': 1, 'path': 'http://cdn.akc.org/content/hero/puppy-boundaries_header.jpg'},
-        {'image_id': 2, 'path': 'https://image.freepik.com/free-vector/writting-pencil-design_1095-187.jpg'},
-    ]
     image_id = request.args.get('id', None)
     if image_id:
-        responseImg = classifier.classifyImg(request, images, image_id)
-    return render_template("index.html", images=images, task='Comida', responseImg=responseImg)
+        responseImg = classifier.classifyImg(request, watsonImgRec.WatsonImgRec.imagesSet(), image_id)
+    return render_template("watsonImgRec.html", images=watsonImgRec.WatsonImgRec.imagesSet(), task=watsonImgRec.WatsonImgRec.task(), responseImg=responseImg)
 
 #app.run(host=os.getenv('IP', '0.0.0.0'),port=int(os.getenv('PORT', 8080)))
 if __name__ == "__main__":
