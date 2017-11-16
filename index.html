@@ -68,6 +68,9 @@
               <a class="nav-link js-scroll-trigger" href="#watsonService">Watson</a>
             </li>
             <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#watsonImgRec">Watson Image Rec</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#uberProducts">Uber</a>
             </li>
             <li class="nav-item">
@@ -146,6 +149,37 @@
                                 </div>
                             </div>
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="services" id="watsonImgRec">
+      <div class="container-fluid">
+        <div class="content-section-a" id="img-Form">
+            <div class="container">
+                <div class="row">
+                    {# left hand side #}
+                    <div class="col-lg-5 col-sm-6">
+                        <hr class="section-heading-spacer">
+                        <div class="clearfix"></div>
+                        <h2 class="section-heading">Watson Image Recognition</h2>
+                        <p class="lead">Select an image that contains: {% if task %}{{ task }}{% endif %}
+                        </p>
+                        <p class="lead">{% if responseImg %}{{ responseImg }}{% endif %}
+                        </p>
+                    </div>
+                    {# right hand side #}
+                    <div class="portfolio-box">
+                    <div class="watson_img" id="watsonImg">
+                        {% for image in images %}
+                            <a href="/watsonImgRec?id={{ image.image_id }}">
+                                <img src="{{ image.path }}" weight="100" height="100" alt="">
+                            </a>
+                        {% endfor %}
+                    </div>
                     </div>
                 </div>
             </div>
