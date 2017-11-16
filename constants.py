@@ -18,3 +18,9 @@ WATSON = {
             "workspaceID": "a13b5afe-2e40-456c-af4b-3aa9dbb33da0",
             "version": "2017-10-01"
         }
+
+WATSON_VISUAL_REC = {
+                'version':'2017-10-01', 
+                'api_key':'c9793cc48a937a0cf72cbe6032eceaa3d02dfe4b',
+                'url': 'https://access.alchemyapi.com/visual-recognition/api',
+        }
